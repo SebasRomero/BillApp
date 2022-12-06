@@ -12,6 +12,20 @@ func New(id uint, product string, value float64) Item {
 	return Item{id, product, value}
 }
 
-func (i Item) Value() float64 {
-	return i.value
+type Items []Item
+
+func NewItems(items ...Item) Items {
+	var it Items
+	for _, item := range items {
+		it = append(it, item)
+	}
+	return it
+}
+
+func (it Items) Total() float64 {
+	var total float64
+	for _, item := range it {
+		total += item.value
+	}
+	return total
 }
